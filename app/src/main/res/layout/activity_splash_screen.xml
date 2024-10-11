@@ -17,12 +17,18 @@
         >
     </View>
 
+    <ImageView
+        android:id="@+id/splashGlideBackground"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        />
+
     <androidx.constraintlayout.widget.Guideline
         android:id="@+id/splashGlH1"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:orientation="horizontal"
-        app:layout_constraintGuide_percent="0.15"
+        app:layout_constraintGuide_percent="0.10"
         />
 
     <ImageView
@@ -45,7 +51,6 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/splashLogo"
         android:textSize="40sp"
-        android:layout_marginTop="10dp"
-        android:fontFamily="@font/Triforce"
+        android:fontFamily="@font/triforce"
         />
 </androidx.constraintlayout.widget.ConstraintLayout>
