@@ -17,9 +17,9 @@ public class MainActivity extends AppCompatActivity {
         TextView welcomeText = findViewById(R.id.welcomeText);
         TextView addedText = findViewById(R.id.addedText);
 
-        SharedPreferences sharedPreferences = getSharedPreferences("Usuario", Context.MODE_PRIVATE);
-        String nombre = sharedPreferences.getString("userName", "anonimo");
-        String password = sharedPreferences.getString("userPassword", "contraseña");
+        SharedPreferences sharedPreferences = getSharedPreferences("Usuario", MODE_PRIVATE);
+        String nombre = sharedPreferences.getString("username", "anonimo");
+        String password = sharedPreferences.getString("password", "contraseña");
 
         welcomeText.setText("hola " + nombre);
         addedText.setText("tu contraseña es: " + password);

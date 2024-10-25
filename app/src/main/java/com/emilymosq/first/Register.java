@@ -2,6 +2,7 @@ package com.emilymosq.first;
 
 import android.annotation.SuppressLint;
 import android.content.Context;
+import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.util.Patterns;
@@ -42,17 +43,34 @@ public class Register extends AppCompatActivity {
                 String password = String.valueOf(registerPasswordTIL.getEditText().getText());
                 String userPasswordCheck = String.valueOf(registerConfirmPasswordTIL.getEditText().getText());
 
-                if(!password.equals(userPasswordCheck)){
-                    Toast toast = Toast.makeText(getApplicationContext(), "Tus contraseñas no coinciden",  Toast.LENGTH_SHORT);
-                    toast.show();
-                } else{
-                    SharedPreferences preferences = getSharedPreferences("Usuario", Context.MODE_PRIVATE);
-                    SharedPreferences.Editor editor = preferences.edit();
-                    editor.putString("username", username);
-                    editor.putString("password", password);
-                    editor.apply();
+                if (username.isEmpty()) {
+                    Toast.makeText(getApplicationContext(), "Ingresa un usuario.", Toast.LENGTH_SHORT).show();
+                    return;
                 }
+                if (password.isEmpty()) {
+                    Toast.makeText(getApplicationContext(), "Ingresa una contraseña.", Toast.LENGTH_SHORT).show();
+                    return;
+                }
+                if (!password.equals(userPasswordCheck)) {
+                    Toast.makeText(getApplicationContext(), "Tus contraseñas no coinciden", Toast.LENGTH_SHORT).show();
+                    return;
+                }
+
+                SharedPreferences sharedPreferences = getSharedPreferences("Usuario", Context.MODE_PRIVATE);
+                SharedPreferences.Editor editor = sharedPreferences.edit();
+                editor.putString("username", username);
+                editor.putString("password", password);
+                editor.apply();
+
+                Toast.makeText(getApplicationContext(), "Registro completado.", Toast.LENGTH_SHORT).show();
+                launchLogin();
             }
         });
+    }
+    public void launchLogin() {
+        Intent intent = new Intent(Register.this, Login.class);
+        intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+        intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK);
+        startActivity(intent);
     }
 }
